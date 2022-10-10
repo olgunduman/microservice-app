@@ -5,5 +5,22 @@ services:
     ports:
       - "9042:9042"
 
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: microservice-app
+
+  elasticsearch:
+    image: elasticsearch:7.17.6
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: single-node
+
+
+
+
 
 

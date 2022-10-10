@@ -20,13 +20,25 @@ public class Account implements Serializable {
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
 
-    @Column(value = "name")
+    @Column(value = "username")
     @Setter
     private String username;
+
+    @Column(value = "name")
+    @Setter
+    private String name;
+
+    @Column(value = "surname")
+    @Setter
+    private String surname;
 
     @Setter
     @Column(value = "email")
     private String email;
+
+    @Column(value = "birth_date")
+    @Setter
+    private Date birthDate;
 
     @Setter
     @Column(value = "password")

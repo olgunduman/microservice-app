@@ -1,7 +1,9 @@
 package com.example.AccountService.api;
 
+import com.example.AccountService.dto.AccountDto;
 import com.example.AccountService.entity.Account;
 import com.example.AccountService.service.AccountService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,18 +22,18 @@ public class AccountApi {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Account> get(@PathVariable  String id){
+    public ResponseEntity<AccountDto> get(@PathVariable  String id){
 
     return ResponseEntity.ok(accountService.get(id));
 
     }
     @PostMapping
-    public ResponseEntity<Account> save(@RequestBody Account account){
+    public ResponseEntity<AccountDto> save(@RequestBody AccountDto account){
         return ResponseEntity.ok(accountService.save(account));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Account> update(@PathVariable  String id, @RequestBody Account account){
+    public ResponseEntity<AccountDto> update(@PathVariable  String id, @RequestBody AccountDto account){
         return ResponseEntity.ok(accountService.update(id,account));
 
     }
@@ -43,10 +45,11 @@ public class AccountApi {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Account>> getAll(){
+    public ResponseEntity<List<AccountDto>> getAll(Pageable pageable){
+        return ResponseEntity.ok(accountService.findAll(pageable));
+    }
 
-        return ResponseEntity.ok(accountService.findAll());
-    }
-    }
+
+}
 
 
