@@ -10,6 +10,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: microservice-app
+    ports:
+      - "3306:3306"
 
   elasticsearch:
     image: elasticsearch:7.17.6
@@ -18,9 +20,4 @@ services:
       - "9300:9300"
     environment:
       discovery.type: single-node
-
-
-
-
-
 

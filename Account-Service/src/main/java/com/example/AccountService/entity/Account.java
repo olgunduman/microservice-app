@@ -13,41 +13,39 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
-@Table(value="account")
+@Table(value="account_table")
+
 @Getter
 public class Account implements Serializable {
 
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
 
-    @Column(value = "username")
+
     @Setter
     private String username;
 
-    @Column(value = "name")
+
     @Setter
     private String name;
 
-    @Column(value = "surname")
+
     @Setter
     private String surname;
 
     @Setter
-    @Column(value = "email")
     private String email;
 
-    @Column(value = "birth_date")
     @Setter
     private Date birthDate;
 
     @Setter
-    @Column(value = "password")
     private String password;
 
-    @Column(value = "created_at")
-    private Date createdAt;
 
-    @Column(value = "is_active")
+    @Setter
+    private Date createdAt;
+    @Setter
     private Boolean active;
 
 

@@ -1,8 +1,8 @@
 package com.example.AccountService.service;
 
-import com.example.AccountService.dto.AccountDto;
 import com.example.AccountService.entity.Account;
 import com.example.AccountService.repository.AccountRepository;
+import com.example.client.contract.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
@@ -33,9 +33,17 @@ public class AccountService {
     @Transactional
     public AccountDto save(AccountDto accountDto) {
 
-        Account account = modelMapper.map(accountDto, Account.class);
-        accountRepository.save(account);
-        return modelMapper.map(account, AccountDto.class);
+        Account account = new Account();
+        account.setUsername(accountDto.getUsername());
+        account.setName(accountDto.getName());
+        account.setSurname(accountDto.getSurname());
+        account.setBirthDate(accountDto.getBirthDate());
+        account.setEmail(accountDto.getEmail());
+
+
+        Account returnModel = accountRepository.save(account);
+        return modelMapper.map(returnModel, AccountDto.class);
+
 
     }
 

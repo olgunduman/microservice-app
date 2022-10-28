@@ -1,8 +1,7 @@
 package com.example.AccountService.api;
 
-import com.example.AccountService.dto.AccountDto;
-import com.example.AccountService.entity.Account;
 import com.example.AccountService.service.AccountService;
+import com.example.client.contract.AccountDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

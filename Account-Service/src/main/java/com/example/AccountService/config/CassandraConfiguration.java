@@ -15,9 +15,7 @@ import java.util.List;
 @Configuration
 @EnableCassandraRepositories
 public class CassandraConfiguration extends AbstractCassandraConfiguration {
-    private static final String basePackages = "com.example.AccountService.entity";
-
-
+   // private static final String basePackages = "com.example.AccountService.entity";
 
     @Value("${spcloud.cassandra.contact.point}")
     private String contactPoint;
@@ -61,23 +59,14 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
     @Override
     public String[] getEntityBasePackages() {
-        return new String[] {basePackages};
+        return new String[] {
+
+                "com.example.AccountService.entity"
+        };
     }
-
-
-    @Override
-    protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
-        final CreateKeyspaceSpecification specification =
-                CreateKeyspaceSpecification.createKeyspace(keyspaceName)
-                        .ifNotExists()
-                        .with(KeyspaceOption.DURABLE_WRITES, true)
-                        .withSimpleReplication();
-        return List.of(specification);
-    }
-
     @Override
     public CassandraClusterFactoryBean cluster() {
-        CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
+        CassandraClusterFactoryBean cluster = super.cluster();
         cluster.setPassword(password);
         cluster.setUsername(username);
         return cluster;
